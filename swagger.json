@@ -1,0 +1,175 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "BetVictor API",
+    "description": "API for accessing sports betting data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Data",
+      "description": "Endpoints related to general data retrieval"
+    },
+    {
+      "name": "Sports",
+      "description": "Endpoints related to available sports"
+    },
+    {
+      "name": "Events",
+      "description": "Endpoints related to sporting events"
+    }
+  ],
+  "paths": {
+    "/data": {
+      "get": {
+        "tags": ["Data"],
+        "summary": "Retrieve sports betting data for all available languages",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/sports": {
+      "get": {
+        "tags": ["Sports"],
+        "summary": "Retrieve available sports for all available languages",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/{lang}/data": {
+      "get": {
+        "tags": ["Data"],
+        "summary": "Retrieve sports betting data for the specified language",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "The language code to retrieve data for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": { "description": "Unsupported language" },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/{lang}/sports": {
+      "get": {
+        "tags": ["Sports"],
+        "summary": "Retrieve available sports for the specified language",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "The language code to retrieve data for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": { "description": "Unsupported language" },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/{lang}/event": {
+      "get": {
+        "tags": ["Events"],
+        "summary": "Retrieve all available events for the specified language",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "The language code to retrieve data for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "description": "The event ID or name to retrieve data for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": { "description": "Unsupported language" },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/{lang}/events": {
+      "get": {
+        "tags": ["Sports"],
+        "summary": "Retrieve available events for the specified language",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "language",
+            "in": "path",
+            "description": "The language code to retrieve data for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          },
+          "400": { "description": "Unsupported language" },
+          "404": { "description": "No data available" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "components": {
+      "schemas": {}
+    }
+  }
+}
