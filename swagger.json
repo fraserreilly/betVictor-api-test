@@ -137,6 +137,7 @@
             "description": "Successful response"
           },
           "400": { "description": "Unsupported language" },
+          "400": { "description": "Event parameter is required" },
           "404": { "description": "No data available" },
           "500": { "description": "Internal server error" }
         }

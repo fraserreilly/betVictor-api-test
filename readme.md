@@ -99,12 +99,13 @@ Retrieve all available events for the specified language
 
 ##### Responses
 
-| Code | Description           |
-| ---- | --------------------- |
-| 200  | Successful response   |
-| 400  | Unsupported language  |
-| 404  | No data available     |
-| 500  | Internal server error |
+| Code | Description                 |
+| ---- | --------------------------- |
+| 200  | Successful response         |
+| 400  | Unsupported language        |
+| 400  | Event parameter is required |
+| 404  | No data available           |
+| 500  | Internal server error       |
 
 ### /{lang}/events
 
@@ -129,4 +130,15 @@ Retrieve available events for the specified language
 | 404  | No data available     |
 | 500  | Internal server error |
 
-### components
+## Additional information
+
+I have chosen to write this in typescript to display my capabilities even though it was not required, I have also chosen to include swagger in this project (at least the json). Testing was done with jest and data was retrieved with the first party node-fetch instead of http as it is a better first party module, I asked if this was allowed but unfortunately cannot get a response before deadline. Caching uses node-cache for its ease of use, it caches data for any language "allowed".
+
+I have also used tsx to run as it is substantially easier than using node directly and I use pnpm as my package manager.
+
+### How to run
+
+    pnpm i
+    pnpm start
+
+    pnpm test
