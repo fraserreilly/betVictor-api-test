@@ -9,9 +9,12 @@ describe('/api/v1/:lang/events', () => {
   describe('GET', () => {
     test('should return event when API call succeeds', async () => {
       const lang = 'en-gb';
+      const sport = 'Football';
       (fetchData as jest.Mock).mockResolvedValueOnce(sampleData);
 
-      const response = await request(app).get(`/api/v1/${lang}/events`);
+      const response = await request(app).get(
+        `/api/v1/${lang}/events?sports=${sport}`
+      );
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         result: {
