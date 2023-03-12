@@ -2,7 +2,7 @@ import NodeCache from 'node-cache';
 
 const cache = new NodeCache({ stdTTL: 60 * 60 });
 
-// Fetch data from an API with caching support
+// Fetch data from betvictor API with caching support
 export async function fetchData(
   lang?: string
 ): Promise<{ [lang: string]: any } & { error?: string; errorCode?: number }> {
@@ -31,19 +31,16 @@ export async function fetchData(
       try {
         const response = await fetch(url);
         const responseData = await response.json();
-
-        switch (true) {
-          case !responseData:
-            return {
-              // Return an error if no data is available
-              error: 'No data available',
-              errorCode: 404,
-              result: undefined,
-            };
-          default: // Cache the data
-            cache.set(language, responseData);
-            result[language] = responseData; // Use fetched data
+        if (!responseData) {
+          return {
+            // Return an error if no data is available
+            error: 'No data available',
+            errorCode: 404,
+            result: undefined,
+          };
         }
+        cache.set(language, responseData); // Cache the fetched data
+        result[language] = responseData; // Use fetched data
       } catch (error: any) {
         // Catch any errors during the request
         return {
